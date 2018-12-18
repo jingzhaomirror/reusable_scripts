@@ -54,5 +54,17 @@ print(feature_coef.sort_values('coefficient',ascending=False))
 compute_log_result("LogisticRegression", pred_train, pred_test)
 
 # ---
+# fit random forest model with default parameters
+rfc = Pipeline([('scaler', StandardScaler()),('rfc', RandomForestClassifier())]) # use class_weight='balanced' to adjust for the imbalanced classes
+rfc.fit(X_train, y_train)
+pred_train = rfc.predict(X_train)
+pred_test = rfc.predict(X_test)
+# print feature importance
+feature_rank = pd.DataFrame({'feature': X_train.columns, 'importance': rfc.named_steps.rfc.feature_importances_})
+print(feature_rank.sort_values(by='importance',ascending=False))
+# logging of model performance
+compute_log_result("RandomForestClassifier", pred_train, pred_test)
+
+# ---
 # print the performance report for all prototyped algorithms
 print(score_table)
