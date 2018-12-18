@@ -54,6 +54,50 @@ print(feature_coef.sort_values('coefficient',ascending=False))
 # logging of model performance
 compute_log_result("Lasso", pred_train, pred_test)
 
+# fit Ridge regression model with default parameters
+ridge = Pipeline([('scaler', StandardScaler()),('ridge',Ridge())])
+ridge.fit(X_train, y_train)
+pred_train = ridge.predict(X_train)
+pred_test = ridge.predict(X_test)
+# print features and their coefficients based on the fitted logistic regression model
+feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':ridge.named_steps.ridge.coef_[0]})
+print(feature_coef.sort_values('coefficient',ascending=False))
+# logging of model performance
+compute_log_result("Ridge", pred_train, pred_test)
+
+# ---
+# fit support vector machine regression model with default parameters
+svr = Pipeline([('scaler', StandardScaler()),('svr', SVR())])
+svr.fit(X_train, y_train)
+pred_train = svr.predict(X_train)
+pred_test = svr.predict(X_test)
+# logging of model performance
+compute_log_result("SVR", pred_train, pred_test)
+
+# ---
+# fit random forest regression model with default parameters
+rfr = Pipeline([('scaler', StandardScaler()),('rfr', RandomForestRegressor())])
+rfr.fit(X_train, y_train)
+pred_train = rfr.predict(X_train)
+pred_test = rfr.predict(X_test)
+# print feature importance
+feature_rank = pd.DataFrame({'feature': X_train.columns, 'importance': rfr.named_steps.rfr.feature_importances_})
+print(feature_rank.sort_values(by='importance',ascending=False))
+# logging of model performance
+compute_log_result("RandomForestRegressor", pred_train, pred_test)
+
+# ---
+# fit gradient boosting regression model with default parameters
+gbr = Pipeline([('scaler', StandardScaler()),('gbr', GradientBoostingRegressor())])
+gbr.fit(X_train, y_train)
+pred_train = gbr.predict(X_train)
+pred_test = gbr.predict(X_test)
+# print feature importance
+feature_rank = pd.DataFrame({'feature': X_train.columns, 'importance': gbr.named_steps.gbr.feature_importances_})
+print(feature_rank.sort_values(by='importance',ascending=False))
+# logging of model performance
+compute_log_result("GradientBoostingRegressor", pred_train, pred_test)
+
 # ---
 # print the performance report for all prototyped algorithms
 print(score_table)
