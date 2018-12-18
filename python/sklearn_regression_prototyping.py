@@ -2,7 +2,6 @@
 # import typical preprocessing, pipeline and model_selection modules
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 
 # ---
@@ -38,12 +37,11 @@ def compute_log_result(algo, pred_train, pred_test):
     mse_train = f1_score(y_train, pred_train)
     mse_test = f1_score(y_test, pred_test)
     rmse_train = np.sqrt(mse_train)
-    rmse_test = np.sqrt(rmse_test
+    rmse_test = np.sqrt(rmse_test)
     
     # log the performance
     score_table.loc[algo,:] = r2_train, mse_train, rmse_train, r2_test, mse_test, rmse_test
     
-
 # ---
 # fit Lasso regression model with default parameters
 lasso = Pipeline([('scaler', StandardScaler()),('lasso',Lasso())])
