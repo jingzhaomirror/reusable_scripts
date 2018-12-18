@@ -54,6 +54,15 @@ print(feature_coef.sort_values('coefficient',ascending=False))
 compute_log_result("LogisticRegression", pred_train, pred_test)
 
 # ---
+# fit support vector machine classification model with default parameters
+svc = Pipeline([('scaler', StandardScaler()),('svc', SVC())])
+svc.fit(X_train, y_train)
+pred_train = svc.predict(X_train)
+pred_test = svc.predict(X_test)
+# logging of model performance
+compute_log_result("SVC", pred_train, pred_test)
+
+# ---
 # fit random forest model with default parameters
 rfc = Pipeline([('scaler', StandardScaler()),('rfc', RandomForestClassifier())]) # use class_weight='balanced' to adjust for the imbalanced classes
 rfc.fit(X_train, y_train)
@@ -64,6 +73,18 @@ feature_rank = pd.DataFrame({'feature': X_train.columns, 'importance': rfc.named
 print(feature_rank.sort_values(by='importance',ascending=False))
 # logging of model performance
 compute_log_result("RandomForestClassifier", pred_train, pred_test)
+
+# ---
+# fit gradient boosting model with default parameters
+gbc = Pipeline([('scaler', StandardScaler()),('gbc', GradientBoostingClassifier())])
+gbc.fit(X_train, y_train)
+pred_train = gbc.predict(X_train)
+pred_test = gbc.predict(X_test)
+# print feature importance
+feature_rank = pd.DataFrame({'feature': X_train.columns, 'importance': gbc.named_steps.gbc.feature_importances_})
+print(feature_rank.sort_values(by='importance',ascending=False))
+# logging of model performance
+compute_log_result("GradientBoostingClassifier", pred_train, pred_test)
 
 # ---
 # print the performance report for all prototyped algorithms
