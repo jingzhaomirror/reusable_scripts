@@ -32,13 +32,13 @@ def compute_log_result(algo, pred_train, pred_test):
     """compute and log the performance into the score_table for both training and test sets"""
     
     # compute the performance
-    r2_train = accuracy_score(y_train, pred_train)
-    r2_test = accuracy_score(y_test, pred_test)
-    mse_train = f1_score(y_train, pred_train)
-    mse_test = f1_score(y_test, pred_test)
+    r2_train = r2_score(y_train, pred_train)
+    r2_test = r2_score(y_test, pred_test)
+    mse_train = mean_squared_error(y_train, pred_train)
+    mse_test = mean_squared_error(y_test, pred_test)
     rmse_train = np.sqrt(mse_train)
-    rmse_test = np.sqrt(rmse_test)
-    
+    rmse_test = np.sqrt(mse_test)
+      
     # log the performance
     score_table.loc[algo,:] = r2_train, mse_train, rmse_train, r2_test, mse_test, rmse_test
     
