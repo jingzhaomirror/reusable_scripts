@@ -2,7 +2,6 @@
 # import typical preprocessing, pipeline and model_selection modules
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 
 # --- 
