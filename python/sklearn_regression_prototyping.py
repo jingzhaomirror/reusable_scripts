@@ -49,7 +49,7 @@ lasso.fit(X_train, y_train)
 pred_train = lasso.predict(X_train)
 pred_test = lasso.predict(X_test)
 # print features and their coefficients based on the fitted logistic regression model
-feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':lasso.named_steps.lasso.coef_[0]})
+feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':lasso.named_steps.lasso.coef_})
 print(feature_coef.sort_values('coefficient',ascending=False))
 # logging of model performance
 compute_log_result("Lasso", pred_train, pred_test)
@@ -60,7 +60,7 @@ ridge.fit(X_train, y_train)
 pred_train = ridge.predict(X_train)
 pred_test = ridge.predict(X_test)
 # print features and their coefficients based on the fitted logistic regression model
-feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':ridge.named_steps.ridge.coef_[0]})
+feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':ridge.named_steps.ridge.coef_})
 print(feature_coef.sort_values('coefficient',ascending=False))
 # logging of model performance
 compute_log_result("Ridge", pred_train, pred_test)
