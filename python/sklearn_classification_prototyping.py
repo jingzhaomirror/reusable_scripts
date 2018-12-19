@@ -48,7 +48,7 @@ logit.fit(X_train, y_train)
 pred_train = logit.predict(X_train)
 pred_test = logit.predict(X_test)
 # print features and their coefficients based on the fitted logistic regression model
-feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':logit.named_steps.logit.coef_[0]})
+feature_coef = pd.DataFrame({'feature':X_train.columns, 'coefficient':logit.named_steps.logit.coef_})
 print(feature_coef.sort_values('coefficient',ascending=False))
 # logging of model performance
 compute_log_result("LogisticRegression", pred_train, pred_test)
