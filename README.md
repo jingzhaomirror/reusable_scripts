@@ -1,6 +1,6 @@
-# reusable_scripts
+# Reusable Scripts
 
-## Python: 
+## 'Python' folder: 
 1. df_pivot_sparse_matrix.py:
 pivot pandas dataframe into a **sparse matrix** directly. Unlike Pandas pivot function, work well with big matrix of high sparsity. 
 
