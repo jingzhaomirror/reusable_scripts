@@ -16,7 +16,7 @@ Reusable codes for prototyping off-the-shelf classification algorithms, includin
 Reusable codes for prototyping off-the-shelf Regression algorithms, including Lasso, Ridge, SVR, RandomForestRegressor, GradientBoostingRegressor. Evaluation metrics include r2_score, mean_squared_error, RMSE. 
 
 5. sklearn_ensemble_evaluate_n_estimators.py:
-
+code example for computing RandomForest's accuracy scores for different numbers of n_estimators without retraining with individual models/grid search
 
 6. bokeh_interactive_visual.py:
 Reusable codes for creating interactive visualization based on Bokeh server. 
